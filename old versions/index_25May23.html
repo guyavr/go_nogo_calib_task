@@ -3,7 +3,6 @@
   <head>
     <title>Go/No-go</title>
     <script src="jspsych/jspsych.js"></script>
-    <script src="jspsych/plugin-fullscreen.js"></script>
     <script src="jspsych/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/plugin-image-keyboard-response.js"></script>
     <script src="jspsych/plugin-preload.js"></script>
@@ -23,7 +22,8 @@
     /* initialize jsPsych */
     var jsPsych = initJsPsych({
         on_finish: function() {
-            //jsPsych.data.displayData('csv');
+            jsPsych.data.displayData('csv');
+            //jsPsych.data.get().filter({task: 'response'}).localSave('csv','mydata.csv');
         }
     });
 
@@ -51,12 +51,6 @@
         
     };
     console.log(preload);
-
-    /* enter full screen mode */
-    var enter_fullscreen = {
-        type: jsPsychFullscreen,
-        fullscreen_mode: true
-    }
 
     /* define welcome message trial */
     var welcome = {
@@ -312,6 +306,8 @@
 		},
 	};
 
+    
+
     /* define debrief */
     var debrief_block = {
         type: jsPsychHtmlKeyboardResponse,
@@ -328,17 +324,9 @@
         }
     };
 
-    /* exit full screen mode */
-    var exit_fullscreen = {
-        type: jsPsychFullscreen,
-        fullscreen_mode: false,
-        delay_after: 0
-    }
-
     /* create timeline */
     var timeline = [];
     timeline.push(preload);
-    timeline.push(enter_fullscreen);
     timeline.push(welcome);
     timeline.push(instructions_1);
     timeline.push(instructions_2);
@@ -348,8 +336,7 @@
     timeline.push(experiment_procedure);
     timeline.push(save_data);
     timeline.push(debrief_block);
-    timeline.push(exit_fullscreen);
-    
+
     console.log(timeline);
 
     /* start the experiment */
