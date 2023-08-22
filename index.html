@@ -206,8 +206,17 @@
         post_trial_gap: jsPsych.timelineVariable('isi'),
         data: {
             task: 'cue1'
-        }
+        },
 
+        on_start: function(data){
+            
+            var today = new Date();
+            var time_now = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + ":" + today.getMilliseconds();
+            
+            data.Time_TrialStart = time_now
+
+            console.log("Start time: " + data.Time_TrialStart)
+        }
     };
 
     var cue2 = {
@@ -232,6 +241,10 @@
         },
         
         on_finish: function(data){
+            
+            var today = new Date();
+            var time_now = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds() + ":" + today.getMilliseconds();
+            
             data.TrialNum = data.trial_num
             data.Cue1_Stimulus = data.cue1_stimulus
             data.Cue1_Duration = data.cue1_duration
@@ -246,6 +259,10 @@
             data.IsCorrect = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response) // change to incorporate reation time as well!!!
             
             data.RT = jsPsych.data.get().last(1).values()[0].rt
+
+            data.Time_TrialEnd = time_now
+
+            console.log("End time: " + data.Time_TrialEnd)
         }
         
     };
@@ -307,8 +324,8 @@
                 'cue2_stimulus',
                 'cue2_duration',
                 'iti',
-                'correct_response'
-            ]).localSave('csv','myData_go_nogo_calib_task_1.csv');		
+                'correct_response',
+            ]).localSave('csv','myData_go_nogo_calib_task_testTime_21Aug23.csv');		
 		},
 	};
 
