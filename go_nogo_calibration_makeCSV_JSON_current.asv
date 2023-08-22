@@ -8,13 +8,14 @@ version = 1; % change version also in the go_nogo_csv2json.py
 
 nT_unit = 10; % compute number of trials for each condition based on this number
 prob_unit = 0.25; % prob of trials of incongruent cue2 with respect to cue1
+nT_cond = nT_unit/prob_unit; % total number of trials per condition
 
 % Go/No-Go Calibration
 nT_rest = nT_unit/prob_unit;
 nT_go_go = nT_unit/prob_unit - nT_unit; % cue1 = go; cue2 = go
-nT_go_nogo = nT_unit; % cue1 = go; cue2 = nogo
-nT_nogo_nogo = nT_unit/prob_unit - nT_unit; % cue1 = nogo; cue2 = nogo
-nT_nogo_go = nT_unit; % cue1 = nogo; cue2 = go
+nT_go_nogo = 4; % cue1 = go; cue2 = nogo
+nT_nogo_nogo = 12; % cue1 = nogo; cue2 = nogo
+nT_nogo_go = 4; % cue1 = nogo; cue2 = go
 
 % Test
 % nT_rest = 4;

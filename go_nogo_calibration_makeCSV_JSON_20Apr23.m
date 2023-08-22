@@ -6,22 +6,22 @@ close all
 namefile = 'go_nogo_calib';
 version = 1; % change version also in the go_nogo_csv2json.py
 
-nT_unit = 10; % compute number of trials for each condition based on this number
-prob_unit = 0.25; % prob of trials of incongruent cue2 with respect to cue1
+% Standard Reaction time
+nT_rt_task = 20;
 
 % Go/No-Go Calibration
-nT_rest = nT_unit/prob_unit;
-nT_go_go = nT_unit/prob_unit - nT_unit; % cue1 = go; cue2 = go
-nT_go_nogo = nT_unit; % cue1 = go; cue2 = nogo
-nT_nogo_nogo = nT_unit/prob_unit - nT_unit; % cue1 = nogo; cue2 = nogo
-nT_nogo_go = nT_unit; % cue1 = nogo; cue2 = go
+nT_rest = 4;
+nT_go_go = 12; % cue1 = go; cue2 = go
+nT_go_nogo = 4; % cue1 = go; cue2 = nogo
+nT_nogo_nogo = 12; % cue1 = nogo; cue2 = nogo
+nT_nogo_go = 4; % cue1 = nogo; cue2 = go
 
 % Test
-% nT_rest = 4;
-% nT_go_go = 12; % cue1 = go; cue2 = go
-% nT_go_nogo = 4; % cue1 = go; cue2 = nogo
-% nT_nogo_nogo = 12; % cue1 = nogo; cue2 = nogo
-% nT_nogo_go = 4; % cue1 = nogo; cue2 = go
+% nT_rest = 2;
+% nT_go_go = 2; % cue1 = go; cue2 = go
+% nT_go_nogo = 2; % cue1 = go; cue2 = nogo
+% nT_nogo_nogo = 2; % cue1 = nogo; cue2 = nogo
+% nT_nogo_go = 2; % cue1 = nogo; cue2 = go
 
 nT_allTypes = [nT_rest, nT_go_go, nT_go_nogo, nT_nogo_nogo, nT_nogo_go];
 nT_tot = sum(nT_allTypes);
