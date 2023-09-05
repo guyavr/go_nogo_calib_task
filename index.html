@@ -272,7 +272,8 @@
         
         trial_duration: 1500,
         post_trial_gap: jsPsych.timelineVariable('iti'), 
-
+        choices: "NO_KEYS",
+        
         stimulus: function() {
             
             if ( jsPsych.data.get().last(1).values()[0].IsCorrect & jsPsych.data.get().last(1).values()[0].rt < rt_goal) {
