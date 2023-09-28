@@ -4,7 +4,6 @@
     <title>Go/No-go</title>
     <script src="jspsych/jspsych.js"></script>
     <script src="jspsych/plugin-fullscreen.js"></script>
-    <script src="jspsych/plugin-instructions.js"></script>
     <script src="jspsych/plugin-html-keyboard-response.js"></script>
     <script src="jspsych/plugin-image-keyboard-response.js"></script>
     <script src="jspsych/plugin-preload.js"></script>
@@ -60,76 +59,108 @@
     }
 
     /* define welcome message trial */
-    var instructions = {
-        type: jsPsychInstructions,
-        pages: [
-            
-            // Welcome page
-            `Welcome to the experiment.`,
-
-            // Instruction 1: Go vs No-Go cues
-            `<p>In this part of the experiment, you will still press the SPACE key</p>
-            <p>as fast as you can when the <strong>blue square</strong> appears.</p>
-            <p>However, this time there is a trick: If the square is <strong>orange</strong>, do NOT press any key!</p>
-        
-            <div style='float: center'>
-                <img src='img/cue2BLUE_cue2ORANGE.png'; style="height:300; width:750px;"></img>
-            </div>`,
-
-            // Instruction 2: Mostly Go
-            `<p>Like before, a circle will appear just before the blue/orange square</p>
-            <p>This time, the colors of the circle give you a hint about</p>
-            <p>whether the next square will be blue or orange.</p> 
-            
-            <p>If the circle is mostly <strong>blue</strong>, the following square will probably also be <strong>blue</strong>,</p>
-            <p>so prepare to respond <i>quickly</i> when the blue square appears.</p>
-            
-            <div style='float: center'>
-                <img src='img/cue1BLUEorange_cue2BLUE.png'; style="height:300; width:750px;"></img>
-            </div>
-
-            <p>BUT BE CAREFUL: It's less likely, but sometimes an <strong>orange square</strong> </p>
-            <p>will appear after the "mostly blue" circle.</p>
-            <p>Remember: When you see an orange square, STOP your response and don't press any key!</p>
-
-            <div style='float: center'>
-                <img src='img/cue1BLUEorange_cue2ORANGE.png'; style="height:300; width:750px;"></img>
-            </div>`,
-            
-            // Instruction 3: Mostly No-Go
-            `<p>If the initial circle is mostly <strong>orange</strong>,</p>
-            <p>the upcoming square will probably also be <strong>orange</strong>,</p>
-            <p>so you <i>probably</i> will not need to respond.</p>
-            
-            <div style='float: center'>
-                <img src='img/cue1ORANGEblue_cue2ORANGE.png'; style="height:300; width:750px;"></img>
-            </div>
-
-            <p>BUT WATCH OUT: Sometimes a <strong>blue square</strong></p>
-            <p>will appear after the "mostly orange" circle!</p>
-            <p>Remember: Any time you see the blue square,</p>
-            <p>press the SPACE key as fast as possible!</p>
-
-            <div style='float: center'>
-                <img src='img/cue1ORANGEblue_cue2BLUE.png'; style="height:300; width:750px;"></img>
-            </div>`,
-            
-            // Instruction 4: Only No-Go
-            `<p>Sometimes the first cirle will be <strong>all orange</strong>.</p>
-            <p>This means that the next square will <i>definitely</i> be <strong>orange</strong>,</p>
-            <p>and <i>never</i> blue,</p>
-            <p>so you know for sure that you don't need to respond.</p>
-            
-            <div style='float: center'>
-                <img src='img/cue1ORANGE_cue2ORANGE.png'; style="height:300; width:750px;"></img>
-            </div>`
-            
-        ],
-        show_clickable_nav: true
+    var welcome = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: "Welcome to the experiment. Press any key to begin."
     };
     
+    /* define instructions trial */
+    // Go vs No-Go cues
+    var instructions_1 = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `
+        <p>In this part of the experiment, you will still press the SPACE key</p>
+        <p>as fast as you can when the <strong>blue square</strong> appears.</p>
+        <p>However, this time there is a trick: If the square is <strong>orange</strong>, do NOT press any key!</p>
+        
+        <div style='float: center'>
+            <img src='img/cue2BLUE_cue2ORANGE.png'; style="height:300; width:750px;"></img>
+        </div>
+
+        <p>Press the SPACE key to continue.</p>
+        `,
+        choices: ' '
+        
+    };
+    
+    // Mostly Go
+    var instructions_2 = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `
+        <p>Like before, a circle will appear just before the blue/orange square</p>
+        <p>This time, the colors of the circle give you a hint about</p>
+        <p>whether the next square will be blue or orange.</p> 
+        
+        <p>If the circle is mostly <strong>blue</strong>, the following square will probably also be <strong>blue</strong>,</p>
+        <p>so prepare to respond <i>quickly</i> when the blue square appears.</p>
+        
+        <div style='float: center'>
+            <img src='img/cue1BLUEorange_cue2BLUE.png'; style="height:300; width:750px;"></img>
+        </div>
+
+        <p>BUT BE CAREFUL: It's less likely, but sometimes an <strong>orange square</strong> </p>
+        <p>will appear after the "mostly blue" circle.</p>
+        <p>Remember: When you see an orange square, STOP your response and don't press any key!</p>
+
+        <div style='float: center'>
+            <img src='img/cue1BLUEorange_cue2ORANGE.png'; style="height:300; width:750px;"></img>
+        </div>
+        
+        <p>Press the SPACE key to continue.</p>
+        `,
+        choices: ' '
+        
+    };
+
+    // Mostly No-Go
+    var instructions_3 = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `
+        
+        <p>If the initial circle is mostly <strong>orange</strong>,</p>
+        <p>the upcoming square will probably also be <strong>orange</strong>,</p>
+        <p>so you <i>probably</i> will not need to respond.</p>
+        
+        <div style='float: center'>
+            <img src='img/cue1ORANGEblue_cue2ORANGE.png'; style="height:300; width:750px;"></img>
+        </div>
+
+        <p>BUT WATCH OUT: Sometimes a <strong>blue square</strong></p>
+        <p>will appear after the "mostly orange" circle!</p>
+        <p>Remember: Any time you see the blue square,</p>
+        <p>press the SPACE key as fast as possible!</p>
+
+        <div style='float: center'>
+            <img src='img/cue1ORANGEblue_cue2BLUE.png'; style="height:300; width:750px;"></img>
+        </div>
+        
+        <p>Press the SPACE key to continue.</p>
+        `,
+        choices: ' '
+    };
+
+    // Only No-Go
+    var instructions_4 = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `
+        
+        <p>Sometimes the first cirle will be <strong>all orange</strong>.</p>
+        <p>This means that the next square will <i>definitely</i> be <strong>orange</strong>,</p>
+        <p>and <i>never</i> blue,</p>
+        <p>so you know for sure that you don't need to respond.</p>
+        
+        <div style='float: center'>
+            <img src='img/cue1ORANGE_cue2ORANGE.png'; style="height:300; width:750px;"></img>
+        </div>
+        
+        <p>Press the SPACE key to continue.</p>
+        `,
+        choices: ' '
+        
+    };
+
     // Instruction summary
-    var instructions_summary = {
+    var instructions_5 = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: `
         
@@ -148,7 +179,7 @@
             <img src='img/cue1s_BLUEorange_ORANGEblue_ORANGE.png'; style="height:400; width:850px;"></img>
         </div>
 
-        <p>Press the SPACE key to begin the experiment.</p>
+        <p>Press the SPACE key to begin.</p>
         `,
         choices: ' ',
         post_trial_gap: 2000
@@ -330,8 +361,12 @@
     var timeline = [];
     timeline.push(preload);
     timeline.push(enter_fullscreen);
-    timeline.push(instructions);
-    timeline.push(instructions_summary);
+    timeline.push(welcome);
+    timeline.push(instructions_1);
+    timeline.push(instructions_2);
+    timeline.push(instructions_3);
+    timeline.push(instructions_4);
+    timeline.push(instructions_5);
     timeline.push(experiment_procedure);
     timeline.push(save_data);
     timeline.push(debrief_block);
