@@ -6,7 +6,7 @@ close all
 namefile = 'go_nogo_calib';
 version = 1; % change version also in the go_nogo_csv2json.py
 
-nT_unit = 10; % compute number of trials for each condition based on this number
+nT_unit = 10; % compute number of trials for each condition based on this number (should be 10)
 prob_unit = 0.25; % prob of trials of incongruent cue2 with respect to cue1
 
 % Go/No-Go Calibration
