@@ -18,7 +18,9 @@
   
   //console.log(trial_param);
 
-  var rt_goal = 700; // should be based on the standard RT task (e.g., 115% of mean RT)
+  var indiv_meanRT_ReactionTimeTask = 550;
+  var rt_goal = indiv_meanRT_ReactionTimeTask*1.15; // should be based on the standard RT task (e.g., 115% of mean RT)
+    console.log(rt_goal);
 
   var n_trials=trial_param.length;
     /* initialize jsPsych */
@@ -59,7 +61,7 @@
         fullscreen_mode: true
     }
 
-    /* define welcome message trial */
+    /* define instructions*/
     var instructions = {
         type: jsPsychInstructions,
         pages: [
@@ -235,7 +237,7 @@
 
             data.Time_TrialEnd = time_now
 
-            console.log("End time: " + data.Time_TrialEnd)
+            //console.log("End time: " + data.Time_TrialEnd)
         }
         
     };
@@ -299,7 +301,7 @@
                 'cue2_duration',
                 'iti',
                 'correct_response',
-            ]).localSave('csv','myData_go_nogo_calib_task_testTime_21Aug23.csv');		
+            ]).localSave('csv','myData_go_nogo_calib_task_1.csv');		
 		},
 	};
 
